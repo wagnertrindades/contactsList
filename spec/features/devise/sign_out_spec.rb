@@ -2,7 +2,8 @@ require 'spec_helper'
 
 describe 'sessions#destroy' do
 
-    context 'Log out the account' do
+
+    context 'Log out in account' do
         it 'success' do
             sign_in
 
