@@ -5,4 +5,8 @@ Rails.application.routes.draw do
   devise_scope :user do
     root :to => 'devise/sessions#new'
   end
+
+  resources :users, only: [] do
+    resources :contact_lists
+  end
 end
