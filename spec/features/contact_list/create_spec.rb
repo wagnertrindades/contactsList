@@ -11,7 +11,7 @@ describe "contact_lists#create" do
       fill_in "Email", with: "test@test.com"
       click_button "Criar contato"
       expect(page).to have_content("Contato adicionado com sucesso.")
-      within "div.contacts" do
+      within ".contact-name" do
         expect(page).to have_content("Test")
       end
     end

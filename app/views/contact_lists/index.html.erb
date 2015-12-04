@@ -11,19 +11,21 @@
     </tr>
   </thead>
 
-  <tbody>
-    <% @contact_lists.each do |contact_list| %>
-      <tr>
-        <td><%= contact_list.name %></td>
-        <td><%= contact_list.email %></td>
-        <td><%= link_to 'Show', contact_list %></td>
-        <td><%= link_to 'Edit', edit_contact_list_path(contact_list) %></td>
-        <td><%= link_to 'Destroy', contact_list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
+  <div class="contacts">
+    <ul>
+      <% @contact_lists.each do |contact_list| %>
+        <li class="contact">
+          <span class="contact-name"><%= contact_list.name %></span>
+          <span class="contact-email"><%= contact_list.email %></span>
+          <span><%= link_to 'Show', contact_list %></span>
+          <span><%= link_to 'Edit', edit_contact_list_path(contact_list) %></span>
+          <span><%= link_to 'Destroy', contact_list, method: :delete, data: { confirm: 'Are you sure?' } %></span>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 </table>
 
 <br>
 
-<%= link_to 'New Contact list', new_contact_list_path %>
+<%= link_to 'Novo contato', new_contact_list_path %>

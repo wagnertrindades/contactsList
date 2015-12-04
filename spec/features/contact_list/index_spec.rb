@@ -2,16 +2,20 @@ require 'spec_helper'
 
 describe "contact_lists#index" do
   before { sign_in }
-  let!(:contact) { ContactList.create(name: "Test", email: "test@test.com") }
 
   context "show contacts" do
-    it "success" do
-      within "div.contact-name" do
+    it "contacts is populated" do
+      contact = ContactList.create(name: "Test", email: "test@test.com")
+      
+      visit "/contact_lists"
+      
+      within ".contact-name" do
         expect(page).to have_content(contact.name)
       end
     end
-    it "error" do
-      expect(page.all("li.contact").size).to eq(0)
+    it "contacts is empty" do
+      visit "/contact_lists"
+      expect(page.all(".contact").size).to eq(0)
     end
 
   end

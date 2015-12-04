@@ -28,7 +28,7 @@ class ContactListsController < ApplicationController
 
     respond_to do |format|
       if @contact_list.save
-        format.html { redirect_to @contact_list, notice: 'Contact list was successfully created.' }
+        format.html { redirect_to @contact_list, notice: 'Contato adicionado com sucesso.' }
         format.json { render :show, status: :created, location: @contact_list }
       else
         format.html { render :new }
