@@ -34,7 +34,7 @@ RSpec.describe ContactListsController, type: :controller do
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # ContactListsController. Be sure to keep this updated too.
-  let(:valid_session) { {} }
+  let(:valid_session) { { sign_in } }
 
   describe "GET #index" do
     it "assigns all contact_lists as @contact_lists" do

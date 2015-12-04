@@ -1,10 +1,11 @@
 class ContactListsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_contact_list, only: [:show, :edit, :update, :destroy]
 
   # GET /contact_lists
   # GET /contact_lists.json
   def index
-    @contact_lists = ContactList.all
+    @contact_lists = current_user.contact_list.all
   end
 
   # GET /contact_lists/1
@@ -14,7 +15,7 @@ class ContactListsController < ApplicationController
 
   # GET /contact_lists/new
   def new
-    @contact_list = ContactList.new
+    @contact_list = current_user.contact_list.new
   end
 
   # GET /contact_lists/1/edit
@@ -24,7 +25,7 @@ class ContactListsController < ApplicationController
   # POST /contact_lists
   # POST /contact_lists.json
   def create
-    @contact_list = ContactList.new(contact_list_params)
+    @contact_list = current_user.contact_list.new(contact_list_params)
 
     respond_to do |format|
       if @contact_list.save
@@ -64,11 +65,11 @@ class ContactListsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_contact_list
-      @contact_list = ContactList.find(params[:id])
+      @contact_list = current_user.contact_list.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def contact_list_params
-      params.require(:contact_list).permit(:name, :email)
+      params.require(:contact_list).permit(:name, :email, :user_id)
     end
 end
