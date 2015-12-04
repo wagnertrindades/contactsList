@@ -1,11 +1,12 @@
 require 'spec_helper'
 
 describe "contact_lists#index" do
-  before { sign_in }
+  before { sign_in(name: "example") }
 
   context "show contacts" do
     it "contacts is populated" do
-      contact = ContactList.create(name: "Test", email: "test@test.com")
+      user_id = User.find_by(name: "example").id
+      contact = ContactList.create(name: "Test", email: "test@test.com", user_id: user_id)
       
       visit "/contact_lists"
       
