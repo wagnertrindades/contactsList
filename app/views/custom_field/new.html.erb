@@ -1,0 +1,5 @@
+<h1>Adicionar novo campo personalizado</h1>
+
+<%= form_for @custom_field, url: custom_field_index_path, html: { method: :post } do |f| %>
+  <%= render 'form', f: f %>
+<% end -%>

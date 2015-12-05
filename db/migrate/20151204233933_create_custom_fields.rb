@@ -4,7 +4,6 @@ class CreateCustomFields < ActiveRecord::Migration
       t.string :title
       t.string :status
       t.text :items
-      t.references :contact_list, index: true, foreign_key: true
 
       t.timestamps null: false
     end

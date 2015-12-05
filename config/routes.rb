@@ -1,13 +1,11 @@
 Rails.application.routes.draw do
 
-  resources :contact_lists
   devise_for :users
+  resources :contact_lists
+  resources :custom_field
 
   devise_scope :user do
     root :to => 'devise/sessions#new'
   end
 
-  resources :users, only: [] do
-    resources :contact_lists
-  end
 end

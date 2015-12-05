@@ -2,31 +2,24 @@
 
 <h1>Listing Contact Lists</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <div class="contacts">
-    <ul>
-      <% @contact_lists.each do |contact_list| %>
-        <li class="contact">
-          <span class="contact-name"><%= contact_list.name %></span>
-          <span class="contact-email"><%= contact_list.email %></span>
-          <span><%= link_to 'Show', contact_list %></span>
-          <span><%= link_to 'Edit', edit_contact_list_path(contact_list) %></span>
-          <span><%= link_to 'Destroy', contact_list, method: :delete, data: { confirm: 'Are you sure?' } %></span>
-        </li>
-      <% end %>
-    </ul>
-  </div>
-</table>
+<div class="contacts">
+  <ul>
+    <% @contact_lists.each do |contact_list| %>
+      <li class="contact">
+        <span class="contact-name"><%= contact_list.name %></span>
+        <span class="contact-email"><%= contact_list.email %></span>
+        <span><%= link_to 'Show', contact_list %></span>
+        <span><%= link_to 'Edit', edit_contact_list_path(contact_list) %></span>
+        <span><%= link_to 'Destroy', contact_list, method: :delete, data: { confirm: 'Are you sure?' } %></span>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
 
 <br>
 
-<%= link_to 'Novo contato', new_contact_list_path %>
-<%= link_to 'Sair', destroy_user_session_path, method: :delete %>
+<%= link_to 'Novo contato', new_contact_list_path %><br>
+<%= link_to 'Sair', destroy_user_session_path, method: :delete %><br>
+<%= link_to 'Configurar campos personalizados', custom_field_index_path %>

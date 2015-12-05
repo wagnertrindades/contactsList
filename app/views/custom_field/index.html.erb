@@ -1,0 +1,19 @@
+<h1>Configurar campos personalizados</h1>
+
+<h2>Campos personalizados existentes:</h2>
+
+<div class="custom-fields">
+  <ul>
+    <% @custom_fields.each do |custom_field| %>
+      <li class="custom-field">
+        <span class="custom-field-title"><%= custom_field.title %></span>
+        <span class="custom-field-status"><%= custom_field.status %></span>
+        <span><%= link_to 'Edit' %></span>
+        <span><%= link_to 'Destroy'%></span>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+<%= link_to 'Adicionar campo personalizado', new_custom_field_path %><br>
+<%= link_to 'Voltar para lista de contatos', contact_lists_path %>
