@@ -8,6 +8,7 @@ describe "custom_field#create" do
       click_link "Configurar campos personalizados"
       click_link "Adicionar campo personalizado"
       fill_in "Title", with: "RG"
+      fill_in "Status", with: "text"
       click_button "Criar"
       expect(page).to have_content("Campo personalizado adicionado com sucesso.")
       within ".custom-field .custom-field-title" do
