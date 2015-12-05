@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "custom_field#create" do
   before { sign_in }
 
-  context "Create text_field" do
+  context "Create Custom Field" do
     it "success" do
       click_link "Configurar campos personalizados"
       click_link "Adicionar campo personalizado"

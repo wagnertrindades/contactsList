@@ -8,8 +8,8 @@
       <li class="custom-field">
         <span class="custom-field-title"><%= custom_field.title %></span>
         <span class="custom-field-status"><%= custom_field.status %></span>
-        <span><%= link_to 'Edit' %></span>
-        <span><%= link_to 'Destroy'%></span>
+        <span><%= link_to 'Editar', edit_custom_field_path(custom_field) %></span>
+        <span><%= link_to 'Apagar', custom_field_path(custom_field), method: :delete %></span>
       </li>
     <% end %>
   </ul>

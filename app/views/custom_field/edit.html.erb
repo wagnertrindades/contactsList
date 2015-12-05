@@ -1,6 +1,6 @@
-<h1>Adicionar novo campo personalizado</h1>
+<h1>Editar campo personalizado</h1>
 
-<%= form_for @custom_field, url: custom_field_index_path, html: { method: :post } do |f| %>
+<%= form_for @custom_field, url: custom_field_path, html: { method: :put } do |f| %>
   <% if @custom_field.errors.any? %>
     <div id="error_explanation">
       <ul class="forms-errors">
@@ -16,12 +16,7 @@
     <%= f.text_field :title %>
   </div>
 
-  <div class="field">
-    <%= f.label :status %><br>
-    <%= f.text_area :status %>
-  </div>
-
   <div class="actions">
-    <%= f.submit "Criar" %>
+    <%= f.submit "Atualizar" %>
   </div>
 <% end -%>
