@@ -18,7 +18,7 @@
 
   <div class="field">
     <%= f.label :status %><br>
-    <%= f.text_area :status %>
+    <%= f.select :status, options_for_select([["Texto curto", "text"], ["Texto longo", "text_area"], ["Caixa de seleção", "combobox"]]) %>
   </div>
 
   <div class="actions">

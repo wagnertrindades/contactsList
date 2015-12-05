@@ -19,6 +19,16 @@ RSpec.describe CustomField, type: :model do
       it "presence invalid" do
         CustomField.create(title: "Test", status: "").should_not be_valid
       end
+      it "value of inclusion valid" do
+        CustomField.create(title: "Test", status: "text").should be_valid
+        CustomField.create(title: "Test", status: "text_area").should be_valid
+        CustomField.create(title: "Test", status: "combobox").should be_valid
+      end
+      it "value of inclusion invalid" do
+        CustomField.create(title: "Test", status: "label").should_not be_valid
+        CustomField.create(title: "Test", status: "submit").should_not be_valid
+        CustomField.create(title: "Test", status: "kdjafls").should_not be_valid
+      end
     end
 
   end
