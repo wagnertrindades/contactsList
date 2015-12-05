@@ -16,7 +16,7 @@ RSpec.describe "contact_lists/index", type: :view do
 
   it "renders a list of contact_lists" do
     render
-    assert_select "li>span", :text => "Name".to_s, :count => 2
-    assert_select "li>span", :text => "Email".to_s, :count => 2
+    assert_select "tr>th", :text => "Name".to_s, :count => 2
+    assert_select "tr>th", :text => "Email".to_s, :count => 2
   end
 end

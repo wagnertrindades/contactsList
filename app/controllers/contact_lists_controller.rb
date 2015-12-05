@@ -7,6 +7,7 @@ class ContactListsController < ApplicationController
   # GET /contact_lists.json
   def index
     @contact_lists = current_user.contact_list.all
+    @custom_fields = current_user.custom_field.all
   end
 
   # GET /contact_lists/1

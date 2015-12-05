@@ -2,12 +2,11 @@ require 'spec_helper'
 
 describe "contact_lists#index" do
   before { sign_in(name: "example") }
+  let!(:user_id) { User.find_by(name: "example").id }
 
   context "show contacts" do
     it "contacts is populated" do
-      user_id = User.find_by(name: "example").id
       contact = ContactList.create(name: "Test", email: "test@test.com", user_id: user_id)
-      
       visit "/contact_lists"
       
       within ".contact-name" do
@@ -15,10 +14,24 @@ describe "contact_lists#index" do
       end
     end
     it "contacts is empty" do
+
       visit "/contact_lists"
       expect(page.all(".contact").size).to eq(0)
     end
 
+  end
+
+  context "show custom fields" do
+    it "custom fields is populated" do
+      contact = ContactList.create(name: "Test", email: "test@test.com", user_id: user_id)
+      custom_field = CustomField.create(title: "Número", status: "text", user_id: user_id)
+
+      visit "/contact_lists"
+
+      within ".head" do
+        expect(page).to have_content(custom_field.title)
+      end
+    end
   end
   
   # it "displays the title of the todo list" do

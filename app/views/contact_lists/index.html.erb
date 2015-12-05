@@ -2,20 +2,34 @@
 
 <h1>Listing Contact Lists</h1>
 
+<table>
+  <thead>
+    <tr class="head">
+      <th class="field">Nome</th>
+      <th class="field">E-mail</th>
+      
+      <% if @custom_fields %>
+        <% @custom_fields.each do |custom_field| %>
+          <th class="field"><%= custom_field.title %></th>
+        <% end -%>
+      <% end -%>
 
-<div class="contacts">
-  <ul>
+    </tr>
+  </thead>
+  <tbody class="contacts">
+    
     <% @contact_lists.each do |contact_list| %>
-      <li class="contact">
-        <span class="contact-name"><%= contact_list.name %></span>
-        <span class="contact-email"><%= contact_list.email %></span>
-        <span><%= link_to 'Show', contact_list %></span>
-        <span><%= link_to 'Edit', edit_contact_list_path(contact_list) %></span>
-        <span><%= link_to 'Destroy', contact_list, method: :delete, data: { confirm: 'Are you sure?' } %></span>
-      </li>
+      <tr class="contact">
+        <th class="contact-name"><%= contact_list.name %></th>
+        <th class="contact-email"><%= contact_list.email %></th>
+        <th><%= link_to 'Show', contact_list %></th>
+        <th><%= link_to 'Edit', edit_contact_list_path(contact_list) %></th>
+        <th><%= link_to 'Destroy', contact_list, method: :delete, data: { confirm: 'Are you sure?' } %></th>
+      </tr>
     <% end %>
-  </ul>
-</div>
+    
+  </tbody>
+</table>
 
 
 <br>
