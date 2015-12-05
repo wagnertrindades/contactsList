@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151205113910) do
+ActiveRecord::Schema.define(version: 20151205184809) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,19 @@ ActiveRecord::Schema.define(version: 20151205113910) do
 
   add_index "custom_fields", ["user_id"], name: "index_custom_fields_on_user_id", using: :btree
 
+  create_table "fields", force: :cascade do |t|
+    t.string   "content"
+    t.text     "area_content"
+    t.text     "combobox"
+    t.integer  "contact_list_id"
+    t.integer  "custom_field_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "fields", ["contact_list_id"], name: "index_fields_on_contact_list_id", using: :btree
+  add_index "fields", ["custom_field_id"], name: "index_fields_on_custom_field_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "name",                   default: "", null: false
     t.string   "email",                  default: "", null: false
@@ -58,4 +71,6 @@ ActiveRecord::Schema.define(version: 20151205113910) do
 
   add_foreign_key "contact_lists", "users"
   add_foreign_key "custom_fields", "users"
+  add_foreign_key "fields", "contact_lists"
+  add_foreign_key "fields", "custom_fields"
 end
