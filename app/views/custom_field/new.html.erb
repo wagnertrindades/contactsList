@@ -9,7 +9,7 @@
     <% end -%>
   </h1>
   
-  <%= form_for @custom_field, url: custom_field_index_path, html: { method: :post } do |f| %>
+  <%= form_for @custom_field, url: custom_field_index_path, html: { method: :post, class: "ui form" } do |f| %>
     <% if @custom_field.errors.any? %>
       <div id="error_explanation">
         <ul class="forms-errors">
@@ -31,7 +31,7 @@
     </div>
 
 
-    <%= f.submit "Criar campo", class: "ui button blue"%>
+    <%= f.submit "Criar campo", class: "ui button blue" %>
   <% end -%>
 
 </div>

@@ -1,6 +1,14 @@
-<h1>Editing Contact List</h1>
+<%= render 'layouts/menu', page: "Editar contato" %>
 
-<%= render partial: 'form', locals: { button_name: "Atualizar contato" } %>
+<div class="ui container form">
+  <h1 class="ui dividing header">
+    Editar contato
+    <%= link_to contact_lists_path, class: "icon-title", title: "Voltar para lista de contatos" do %>
+      <i class="users icon teal"></i>
+    <% end -%>
+  </h1>
 
-<%= link_to 'Show', @contact_list %> |
-<%= link_to 'Back', contact_lists_path %>
+
+  <%= render partial: 'form', locals: { button_name: "Atualizar contato" } %>
+
+</div>
