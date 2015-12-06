@@ -44,7 +44,7 @@ class ContactListsController < ApplicationController
   def update
     respond_to do |format|
       if @contact_list.update(contact_list_params)
-        format.html { redirect_to edit_contact_list_field_path(@contact_list), notice: 'Contato atualizado com sucesso.' }
+        format.html { redirect_to @contact_list, notice: 'Contato atualizado com sucesso.' }
         format.json { render :show, status: :ok, location: @contact_list }
       else
         format.html { render :edit }
