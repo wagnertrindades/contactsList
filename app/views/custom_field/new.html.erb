@@ -1,27 +1,37 @@
-<h1>Adicionar novo campo personalizado</h1>
+<%= render 'layouts/menu', page: "Novo campo personalizado" %>
 
-<%= form_for @custom_field, url: custom_field_index_path, html: { method: :post } do |f| %>
-  <% if @custom_field.errors.any? %>
-    <div id="error_explanation">
-      <ul class="forms-errors">
-      <% @custom_field.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<div class="ui container form">
+
+  <h1 class="ui dividing header">
+    Adicionar novo campo personalizado
+    <%= link_to contact_lists_path, class: "icon-title", title: "Voltar para lista de contatos" do %>
+      <i class="users icon teal"></i>
+    <% end -%>
+  </h1>
+  
+  <%= form_for @custom_field, url: custom_field_index_path, html: { method: :post } do |f| %>
+    <% if @custom_field.errors.any? %>
+      <div id="error_explanation">
+        <ul class="forms-errors">
+        <% @custom_field.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :title, "Titulo" %>
+      <%= f.text_field :title %>
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </div>
+    <div class="field">
+      <%= f.label :status, "Tipo de campo" %>
+      <%= f.select :status, options_for_select([["Texto curto", "text"], ["Texto longo", "text_area"], ["Caixa de seleção", "combobox"]]) %>
+    </div>
 
-  <div class="field">
-    <%= f.label :status %><br>
-    <%= f.select :status, options_for_select([["Texto curto", "text"], ["Texto longo", "text_area"], ["Caixa de seleção", "combobox"]]) %>
-  </div>
 
-  <div class="actions">
-    <%= f.submit "Criar" %>
-  </div>
-<% end -%>
+    <%= f.submit "Criar campo", class: "ui button blue"%>
+  <% end -%>
+
+</div>

@@ -17,7 +17,7 @@ class CustomField < ActiveRecord::Base
     return true if self.status == "text_area"
   end
 
-  def is_checkbox?
+  def is_combobox?
     return true if self.status == "combobox"
   end
 end
