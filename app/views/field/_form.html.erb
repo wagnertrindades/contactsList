@@ -1,21 +1,33 @@
-<%= form_for @contact_list.fields.build, url: contact_list_field_index_path(@contact_list), html: { method: :post } do |f| %>
+<%= form_for @contact_list.fields.build, url: contact_list_field_index_path(@contact_list), html: { method: :post, class: "ui form " } do |f| %>
 
     <% if type_field == "text" %>
       <div class="field">
         <label for="field_content"><%= label %></label>
-        <%= f.text_field :content %>
+
+        <div class="ui right action input visible">
+          <%= f.text_field :content %>
+          <%= f.submit "+", class: "ui teal button" %>
+        </div> 
+
       </div>
     <% elsif type_field == "text_area" %>
       <div class="field">
         <label for="field_area_content"><%= label %></label>
         <%= f.text_area :area_content %>
+
+          <%= f.submit "Atualizar", class: "ui teal button" %>
+
       </div>
     <% elsif type_field == "combobox" %>
       <div class="field">
         <label for="field_combobox"><%= label %></label>
-        <%= f.text_area :combobox %>
+        <div class="ui right action input visible">
+          <%= f.text_area :combobox %>
+          <%= f.submit "Atualizar", class: "ui teal button" %>
+        </div> 
+
+
       </div>
     <% end -%>
     
-    <%= f.submit "Atualizar" %>
 <% end -%>

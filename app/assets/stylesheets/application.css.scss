@@ -48,3 +48,10 @@ h1 {
   margin-top: 0;
   border-radius: 0;
 }
+
+// Forms
+body {
+  .container.form{
+    max-width: 600px !important;
+  }
+}
