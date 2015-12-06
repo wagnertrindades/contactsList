@@ -1,19 +1,69 @@
-<h1>Configurar campos personalizados</h1>
+<%= render 'layouts/menu', page: "Campos Personalizados" %>
 
-<h2>Campos personalizados existentes:</h2>
+<div class="ui container">
+  <h1 class="ui dividing header">
+    Configurar campos personalizados
+    <%= link_to contact_lists_path, class: "icon-title", title: "Voltar para lista de contatos" do %>
+      <i class="users icon teal"></i>
+    <% end -%>
+  </h1>
+  
+  <div class="content-cards">
+    <h4>Campos personalizados:</h4>
+    
+    <div class="ui cards">
+      <% @custom_fields.each do |custom_field| %>
+        <div class="card">
+          <div class="content">
+            <i class="large server middle aligned icon right floated ui"></i>
+            <div class="header custom-field-title">
+              <%= custom_field.title %>
+            </div>
+            <div class="meta custom-field-status">
+              <% if custom_field.is_text? %>
+                Texto curto
+              <% elsif custom_field.is_text_area? %>
+                Texto Longo
+              <% elsif custom_field.is_combobox? %>
+                Caixa de seleção
+              <% end -%>
+            </div>
+          </div>
+          <div class="extra content">
+            <div class="ui two buttons">
+              <%= link_to edit_custom_field_path(custom_field), title: "Editar Campo Personalizado", class: "ui basic teal button" do %>
+                <i class="refresh icon teal"></i>
+              <% end -%>
+              <%= link_to custom_field_path(custom_field), method: :delete, title: "Apagar Campo Personalizado", class: "ui basic red button" do %>
+                <i class="remove icon red"></i>
+              <% end -%>
+            </div>
+          </div>
+        </div>
+      <% end -%>
 
-<div class="custom-fields">
-  <ul>
-    <% @custom_fields.each do |custom_field| %>
-      <li class="custom-field">
-        <span class="custom-field-title"><%= custom_field.title %></span>
-        <span class="custom-field-status"><%= custom_field.status %></span>
-        <span><%= link_to 'Editar', edit_custom_field_path(custom_field) %></span>
-        <span><%= link_to 'Apagar', custom_field_path(custom_field), method: :delete %></span>
-      </li>
-    <% end %>
-  </ul>
-</div>
+      <div class="card add-custom">
+        <div class="blurring dimmable image">
+            <div class="ui dimmer transition hidden">
+              <div class="content">
+                <div class="center">
+                  <!-- <div class="ui inverted button">Add Friend</div> -->
+                  <%= link_to 'Adicionar campo personalizado', new_custom_field_path, class: "ui inverted button" %>
+                </div>
+              </div>
+            </div>
+            <img src="<%= image_path('add-custom.png') %>">
+        </div>
+      </div>
 
-<%= link_to 'Adicionar campo personalizado', new_custom_field_path %><br>
-<%= link_to 'Voltar para lista de contatos', contact_lists_path %>
+    </div>
+  </div>
+
+
+<% content_for :js do %>
+  <script>
+    $('.add-custom .image').dimmer({
+      on: 'hover'
+    });
+  </script>
+<% end %>

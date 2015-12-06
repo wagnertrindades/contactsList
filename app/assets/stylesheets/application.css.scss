@@ -39,8 +39,9 @@ h1 {
     }
   }
 }
-.ui.menu .item > i.icon{
-  margin: 0;
+.ui.menu .item > i.icon,
+.button .icon{
+  margin: 0 !important;
 }
 
 // All pages except user views
@@ -53,5 +54,17 @@ h1 {
 body {
   .container.form{
     max-width: 600px !important;
+  }
+}
+
+// Cards Custom
+.content-cards {
+  max-width: 898px;
+  margin: 4em auto 0;
+}
+.add-custom {
+  .image {
+    margin-top: 0px;
+    opacity: .5;
   }
 }
