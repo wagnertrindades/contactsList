@@ -15,6 +15,7 @@
  */
 @import "semantic-ui";
 
+// User views
 body > .grid {
   height: 100%;
 }
@@ -23,4 +24,27 @@ body > .grid {
 }
 .column {
   max-width: 450px;
+}
+
+// Icons
+i.icon, i.icons {
+  font-size: 1.4em;
+}
+h1 {
+  .icon-title {
+    float: right;
+    
+    i {
+      font-size: 0.95em;
+    }
+  }
+}
+.ui.menu .item > i.icon{
+  margin: 0;
+}
+
+// All pages except user views
+.ui.inverted.menu {
+  margin-top: 0;
+  border-radius: 0;
 }

@@ -1,44 +1,82 @@
-<p id="notice"><%= notice %></p>
+<!-- Menu -->
+<div class="ui inverted menu">
+  <div class="header item">
+    <i class="bordered inverted teal users icon"></i>
+  </div>
+  <div class="active item">Lista de Contatos</div>
+  <!-- <%= link_to 'Configurar campos personalizados', custom_field_index_path, class: "item" %> -->
+  
+  <div class="right menu">
+    <%= link_to custom_field_index_path, class: "item", title: "Configurar campos personalizados" do %>
+      <i class="settings icon"></i>
+    <% end -%>
 
-<h1>Listing Contact Lists</h1>
-
-<table>
-  <thead>
-    <tr class="head">
-      <th class="field">Nome</th>
-      <th class="field">E-mail</th>
-      
-      <% if @custom_fields %>
-        <% @custom_fields.each do |custom_field| %>
-          <th class="field"><%= custom_field.title %></th>
-        <% end -%>
-      <% end -%>
-
-    </tr>
-  </thead>
-  <tbody class="contacts">
+    <%= link_to edit_user_registration_path, class: "item", title: "Editar minha conta" do %>
+      <i class="user icon"></i>
+    <% end -%>
     
-    <% @contact_lists.each do |contact_list| %>
-      <tr class="contact">
-        <th class="contact-name"><%= contact_list.name %></th>
-        <th class="contact-email"><%= contact_list.email %></th>
-        
-        <% contact_list.fields.each do |field| %>
-          <th class="contact-fields"><%= field.content %></th>
-        <% end -%>
+    <%= link_to destroy_user_session_path, method: :delete, class: "item", title: "Sair"  do %>
+      <i class="sign out icon"></i>
+    <% end -%>
+  </div>
+</div>
+<!-- /Menu -->
 
-        <th><%= link_to 'Show', contact_list %></th>
-        <th><%= link_to 'Edit', edit_contact_list_path(contact_list) %></th>
-        <th><%= link_to 'Destroy', contact_list, method: :delete, data: { confirm: 'Are you sure?' } %></th>
-      </tr>
-    <% end %>
+<!-- List -->
+<p id="notice"><%= notice %></p>
+<div class="ui container">
+  <h1 class="ui dividing header">
+    Contatos
+    <%= link_to new_contact_list_path, class: "icon-title", title: "Adicionar contato" do %>
+      <i class="add user icon"></i>
+    <% end -%>
+  </h1>
 
-  </tbody>
-</table>
+  <table class="ui selectable celled right aligned table">
+      <thead>
+        <tr>
+          <th class="left aligned">Nome</th>
+          <th>E-mail</th>
+          
+          <% if @custom_fields %>
+            <% @custom_fields.each do |custom_field| %>
+              <th class="field"><%= custom_field.title %></th>
+            <% end -%>
+          <% end -%>
+          
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody class="contacts">
 
+        <% @contact_lists.each do |contact_list| %>
+          <tr class="contact">
+            <td class="contact-name left aligned"><%= contact_list.name %></td>
+            <td class="contact-email"><%= contact_list.email %></td>
+            
+            <% contact_list.fields.each do |field| %>
+              <td class="contact-fields"><%= field.content %></td>
+            <% end -%>
+            
+            <td class="white">
+              <%= link_to contact_list, title: "Ver Contato" do %>
+                <i class="unhide icon blue"></i>
+              <% end -%>
+              
+              <%= link_to edit_contact_list_path(contact_list), title: "Atualizar Contato" do %>
+                <i class="refresh icon teal"></i>
+              <% end -%>
+              
+              <%= link_to contact_list, method: :delete, data: { confirm: 'Are you sure?' }, title: "Remover Contato" do %>
+                <i class="remove user icon red"></i>
+              <% end -%>
+            </td>
 
-<br>
+          </tr>
+        <% end %>
 
-<%= link_to 'Novo contato', new_contact_list_path %><br>
-<%= link_to 'Sair', destroy_user_session_path, method: :delete %><br>
-<%= link_to 'Configurar campos personalizados', custom_field_index_path %>
+      </tbody>
+    </table>
+  <table>
+  <!-- /List -->
+</div>
