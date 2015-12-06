@@ -1,5 +1,13 @@
-<h1>New Contact List</h1>
+<%= render 'layouts/menu', page: "Novo contato" %>
 
-<%= render partial: 'form', locals: { button_name: "Criar contato" } %>
+<div class="ui container">
+  <h1 class="ui dividing header">
+    Adicionar novo contato
+    <%= link_to contact_lists_path, class: "icon-title", title: "Voltar para lista de contatos" do %>
+      <i class="users icon teal"></i>
+    <% end -%>
+  </h1>
 
-<%= link_to 'Back', contact_lists_path %>
+  <%= render partial: 'form', locals: { button_name: "Criar contato" } %>
+
+</div>

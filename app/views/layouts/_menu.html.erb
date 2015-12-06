@@ -1,0 +1,23 @@
+<!-- Menu -->
+<div class="ui inverted menu">
+  <div class="header item">
+    <i class="bordered inverted teal users icon"></i>
+  </div>
+  <div class="active item"><%= page %></div>
+  <!-- <%= link_to 'Configurar campos personalizados', custom_field_index_path, class: "item" %> -->
+  
+  <div class="right menu">
+    <%= link_to custom_field_index_path, class: "item", title: "Configurar campos personalizados" do %>
+      <i class="settings icon"></i>
+    <% end -%>
+
+    <%= link_to edit_user_registration_path, class: "item", title: "Editar minha conta" do %>
+      <i class="user icon"></i>
+    <% end -%>
+    
+    <%= link_to destroy_user_session_path, method: :delete, class: "item", title: "Sair"  do %>
+      <i class="sign out icon"></i>
+    <% end -%>
+  </div>
+</div>
+<!-- /Menu -->
