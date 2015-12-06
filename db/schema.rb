@@ -38,13 +38,13 @@ ActiveRecord::Schema.define(version: 20151205184809) do
   add_index "custom_fields", ["user_id"], name: "index_custom_fields_on_user_id", using: :btree
 
   create_table "fields", force: :cascade do |t|
-    t.string   "content"
-    t.text     "area_content"
-    t.text     "combobox"
+    t.string   "content",         default: " ", null: false
+    t.text     "area_content",    default: " ", null: false
+    t.text     "combobox",        default: " ", null: false
     t.integer  "contact_list_id"
     t.integer  "custom_field_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
   add_index "fields", ["contact_list_id"], name: "index_fields_on_contact_list_id", using: :btree

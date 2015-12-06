@@ -1,5 +1,7 @@
 class CustomField < ActiveRecord::Base
   belongs_to :user
+  has_one :field
+  has_one :contact_list, through: :field
 
   validates :title, presence: true
   validates :status, presence: true

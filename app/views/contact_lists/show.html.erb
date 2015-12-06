@@ -10,5 +10,11 @@
   <%= @contact_list.email %>
 </p>
 
+<% if @custom_fields %>
+  <% @custom_fields.each do |custom_field| %>
+    <%= render partial: 'field/form', locals: { type_field: custom_field.status, label: custom_field.title } %> 
+  <% end -%>
+<% end -%>
+
 <%= link_to 'Edit', edit_contact_list_path(@contact_list) %> |
 <%= link_to 'Back', contact_lists_path %>

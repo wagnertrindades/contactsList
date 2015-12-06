@@ -23,6 +23,10 @@
         <th class="contact-name"><%= contact_list.name %></th>
         <th class="contact-email"><%= contact_list.email %></th>
         
+        <% contact_list.fields.each do |field| %>
+          <th class="contact-fields"><%= field.content %></th>
+        <% end -%>
+
         <th><%= link_to 'Show', contact_list %></th>
         <th><%= link_to 'Edit', edit_contact_list_path(contact_list) %></th>
         <th><%= link_to 'Destroy', contact_list, method: :delete, data: { confirm: 'Are you sure?' } %></th>

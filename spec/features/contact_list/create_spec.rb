@@ -2,7 +2,6 @@ require 'spec_helper'
 
 describe "contact_lists#create" do
   before { sign_in }
-  let!(:contact) { ContactList.create(name: "Test", email: "test@test.com") }
 
   context "Create contact" do
     it "success" do
