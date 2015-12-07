@@ -8,52 +8,15 @@
       <i class="add user icon"></i>
     <% end -%>
   </h1>
+  
+  <% if @contact_lists.count > 0 %>
+    <%= render 'table_contacts' %>
+  <% else %>
+    <div class="ui visible message">
+      <p lingdex="12">Nenhum contato cadastrado.</p>
+    </div>
+  <% end %>
 
-  <table class="ui selectable celled right aligned table">
-      <thead>
-        <tr>
-          <th class="left aligned">Nome</th>
-          <th>E-mail</th>
-          
-          <% if @custom_fields %>
-            <% @custom_fields.each do |custom_field| %>
-              <th class="field"><%= custom_field.title %></th>
-            <% end -%>
-          <% end -%>
-          
-          <th>Ações</th>
-        </tr>
-      </thead>
-      <tbody class="contacts">
 
-        <% @contact_lists.each do |contact_list| %>
-          <tr class="contact">
-            <td class="contact-name left aligned"><%= contact_list.name %></td>
-            <td class="contact-email"><%= contact_list.email %></td>
-            
-            <% contact_list.fields.each do |field| %>
-              <td class="contact-fields"><%= field.content %></td>
-            <% end -%>
-            
-            <td class="white">
-              <%= link_to contact_list, title: "Ver Contato" do %>
-                <i class="unhide icon blue"></i>
-              <% end -%>
-              
-              <%= link_to edit_contact_list_path(contact_list), title: "Atualizar Contato" do %>
-                <i class="refresh icon teal"></i>
-              <% end -%>
-              
-              <%= link_to contact_list, method: :delete, data: { confirm: 'Are you sure?' }, title: "Remover Contato" do %>
-                <i class="remove user icon red"></i>
-              <% end -%>
-            </td>
-
-          </tr>
-        <% end %>
-
-      </tbody>
-    </table>
-  <table>
   <!-- /List -->
 </div>

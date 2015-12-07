@@ -58,7 +58,7 @@ class ContactListsController < ApplicationController
   def destroy
     @contact_list.destroy
     respond_to do |format|
-      format.html { redirect_to contact_lists_url, notice: 'Contact list was successfully destroyed.' }
+      format.html { redirect_to contact_lists_url, notice: 'Contato apagado com sucesso.' }
       format.json { head :no_content }
     end
   end
