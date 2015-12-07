@@ -29,9 +29,38 @@
       <%= f.label :status, "Tipo de campo" %>
       <%= f.select :status, options_for_select([["Texto curto", "text"], ["Texto longo", "text_area"], ["Caixa de seleção", "combobox"]]) %>
     </div>
-
+    
+    <div id="items-field" class="field">
+      <div class="ui message">
+        <div class="header">
+          Prenchendo as opções da caixa de seleção
+        </div>
+        <p lingdex="1">Coloque as opções separadas por virgula e espaço. Exemplo: Brasil, Estados Unidos, México </p>
+      </div>
+      <%= f.label :items, "Items para adicionar a caixa de seleção" %>
+      <%= f.text_field :items %>
+    </div>
 
     <%= f.submit "Criar campo", class: "ui button blue" %>
   <% end -%>
 
 </div>
+
+<% content_for :js do %>
+  <script>
+
+    function showInput(){
+      var select = document.getElementById("custom_field_status");
+      select.onchange = function(){
+        var input = document.getElementById("items-field");
+        if(this.value == "combobox"){
+          input.style.display = "block";
+        }else{
+          input.style.display = "none";
+        }
+      }
+    };
+
+    showInput();
+  </script>
+<% end -%>

@@ -19,16 +19,29 @@
       <tr class="contact">
         <td class="contact-name left aligned"><%= contact_list.name %></td>
         <td class="contact-email"><%= contact_list.email %></td>
-        
+        <!-- get fields -->
         <% contact_list.fields.each do |field| %>
-          <td class="contact-fields"><%= field.content %></td>
-        <% end -%>
-        
-        <td class="white">
-          <%= link_to contact_list, title: "Ver Contato" do %>
-            <i class="unhide icon blue"></i>
+
+          <% if field.custom_field.is_text? %>
+            <td class="contact-fields"><%= field.content %></td>
+          <% elsif field.custom_field.is_text_area? %>
+            <td class="contact-fields"><%= field.area_content %></td>
+          <% elsif field.custom_field.is_combobox? %>
+            <td class="contact-fields"><%= field.combobox %></td>
           <% end -%>
-          
+
+        <% end -%>
+        <!-- get fields -->
+        <!-- if no field add in custom field -->
+        <% if  contact_list.fields.count != @custom_fields.count %>
+          <% diference = @custom_fields.count - contact_list.fields.count %>
+          <% for i in 1..diference %>
+            <td></td>
+          <% end -%>
+        <% end -%>
+        <!-- if no field add in custom field -->
+        
+        <td>
           <%= link_to edit_contact_list_path(contact_list), title: "Atualizar Contato" do %>
             <i class="refresh icon teal"></i>
           <% end -%>

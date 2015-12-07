@@ -1,22 +1,18 @@
 class ContactListsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_contact_list, only: [:show, :edit, :update, :destroy]
-  before_action :set_custom_fields, only: [:index, :show, :new, :edit]
+  before_action :set_contact_list, only: [:edit, :update, :destroy]
+  before_action :set_custom_fields, only: [:index, :new, :edit]
 
   # GET /contact_lists
   # GET /contact_lists.json
   def index
-    @contact_lists = current_user.contact_list.all
+    @contact_lists = current_user.contact_lists.all
   end
 
-  # GET /contact_lists/1
-  # GET /contact_lists/1.json
-  def show
-  end
 
   # GET /contact_lists/new
   def new
-    @contact_list = current_user.contact_list.new
+    @contact_list = current_user.contact_lists.new
     @contact_list.fields.new
   end
 
@@ -27,12 +23,12 @@ class ContactListsController < ApplicationController
   # POST /contact_lists
   # POST /contact_lists.json
   def create
-    @contact_list = current_user.contact_list.new(contact_list_params)
+    @contact_list = current_user.contact_lists.new(contact_list_params)
 
     respond_to do |format|
       if @contact_list.save
-        format.html { redirect_to @contact_list, notice: 'Contato adicionado com sucesso.' }
-        format.json { render :show, status: :created, location: @contact_list }
+        format.html { redirect_to contact_lists_path, notice: 'Contato adicionado com sucesso.' }
+        format.json { render :index, status: :created, location: contact_lists_path }
       else
         format.html { render :new }
         format.json { render json: @contact_list.errors, status: :unprocessable_entity }
@@ -45,8 +41,8 @@ class ContactListsController < ApplicationController
   def update
     respond_to do |format|
       if @contact_list.update(contact_list_params)
-        format.html { redirect_to @contact_list, notice: 'Contato atualizado com sucesso.' }
-        format.json { render :show, status: :ok, location: @contact_list }
+        format.html { redirect_to contact_lists_path, notice: 'Contato atualizado com sucesso.' }
+        format.json { render :index, status: :ok, location: contact_lists_path }
       else
         format.html { render :edit }
         format.json { render json: @contact_list.errors, status: :unprocessable_entity }
@@ -67,11 +63,11 @@ class ContactListsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_contact_list
-      @contact_list = current_user.contact_list.find(params[:id])
+      @contact_list = current_user.contact_lists.find(params[:id])
     end
 
     def set_custom_fields
-      @custom_fields = current_user.custom_field.all
+      @custom_fields = current_user.custom_fields.all
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

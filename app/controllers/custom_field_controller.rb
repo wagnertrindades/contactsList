@@ -2,16 +2,16 @@ class CustomFieldController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @custom_fields = current_user.custom_field.all
+    @custom_fields = current_user.custom_fields.all
   end
 
   def new
-    @custom_field = current_user.custom_field.new
+    @custom_field = current_user.custom_fields.new
   end
 
   def create
-    @custom_field = current_user.custom_field.new(custom_field_params)
-
+    @custom_field = current_user.custom_fields.new(custom_field_params)
+  
     if @custom_field.save
       flash[:success] = "Campo personalizado adicionado com sucesso."
       redirect_to custom_field_index_path
@@ -22,11 +22,11 @@ class CustomFieldController < ApplicationController
   end
 
   def edit
-    @custom_field = current_user.custom_field.find(params[:id])
+    @custom_field = current_user.custom_fields.find(params[:id])
   end
 
   def update
-    @custom_field = current_user.custom_field.find(params[:id])
+    @custom_field = current_user.custom_fields.find(params[:id])
     if @custom_field.update_attributes(custom_field_params)
       flash[:success] = "Campo personalizado atualizado com sucesso."
       redirect_to custom_field_index_path
@@ -37,7 +37,7 @@ class CustomFieldController < ApplicationController
   end
 
   def destroy
-    @custom_field = current_user.custom_field.find(params[:id])
+    @custom_field = current_user.custom_fields.find(params[:id])
     if @custom_field.destroy
       flash[:success] = "Campo personalizado apagado com sucesso."
     else 
@@ -49,6 +49,6 @@ class CustomFieldController < ApplicationController
   
   private
     def custom_field_params
-      params[:custom_field].permit(:title , :status, :user_id)
+      params[:custom_field].permit(:title , :status, :items, :user_id)
     end
 end

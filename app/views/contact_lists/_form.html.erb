@@ -21,40 +21,37 @@
     <%= f.text_field :email %>
   </div>
   
-  <% if @custom_fields.count > 0 %>
-    <% @custom_fields.each do |custom_field| %>
+
+  <% @custom_fields.each do |custom_field| %>
+
+    <%= f.fields_for :fields do |ff| %>
       
-      <%= f.fields_for :fields do |ff| %>
-
-        <% if custom_field.is_text? %>
-
-          <div class="field">
-            <%= ff.label :content, custom_field.title %>
-            <%= ff.text_field :content %>
-          </div>
-
-        <% elsif custom_field.is_text_area? %>
-
-          <div class="field">
-            <%= ff.label :area_content, custom_field.title %>
-            <%= ff.text_area :area_content %>
-          </div>
-
-        <% elsif custom_field.is_combobox? %>
-          
-          <div class="field">
-            <%= ff.label :combobox, custom_field.title %>
-            <%= ff.text_area :combobox %>
-          </div>
-
-        <% end -%>
-    
+      <% if custom_field.is_text? %>
+        <div class="field">
+          <%= ff.label :content, custom_field.title %>
+          <%= ff.text_field :content %>
+        </div>
+      <% elsif custom_field.is_text_area? %>
+        <div class="field">
+          <%= ff.label :area_content, custom_field.title %>
+          <%= ff.text_area :area_content %>
+        </div>
+      <% elsif custom_field.is_combobox? %>
+        <div class="field">
+          <%= ff.label :combobox, custom_field.title %>
+          <%= ff.select :combobox do %>
+            <% custom_field.items_split.each do |item| %>
+              <option value="<%= item %>"><%= item %></option>
+            <% end -%>
+          <% end -%>
+        </div>
       <% end -%>
 
+      <%= ff.hidden_field :custom_field_id, :value => custom_field.id %>
     <% end -%>
-  <% else -%>
-    <p>Sem custom fields</p>
+
   <% end -%>
+
 
   <%= f.submit button_name, class: "ui button blue" %>
 <% end %> 

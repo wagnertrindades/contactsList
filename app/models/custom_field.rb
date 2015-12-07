@@ -1,7 +1,6 @@
 class CustomField < ActiveRecord::Base
   belongs_to :user
-  has_one :field, :dependent => :delete
-  has_one :contact_list, through: :field, :dependent => :delete
+  has_many :fields, :dependent => :delete_all
 
   validates :title, presence: true
   validates :status, presence: true
@@ -19,5 +18,9 @@ class CustomField < ActiveRecord::Base
 
   def is_combobox?
     return true if self.status == "combobox"
+  end
+
+  def items_split
+    return self.items.split(", ")
   end
 end

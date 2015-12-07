@@ -34,6 +34,11 @@ body > .grid {
   right: 1em;
 }
 
+// Menu
+.ui.menu {
+  margin-bottom: 6em;
+}
+
 // Icons
 i.icon, i.icons {
   font-size: 1.4em;
@@ -66,6 +71,9 @@ body {
 }
 #error_explanation {
   display: block;
+}
+#items-field {
+  display: none;
 }
 
 // Cards Custom
