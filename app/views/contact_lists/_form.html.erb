@@ -20,8 +20,41 @@
     <%= f.label :email, "E-mail" %>
     <%= f.text_field :email %>
   </div>
+  
+  <% if @custom_fields.count > 0 %>
+    <% @custom_fields.each do |custom_field| %>
+      
+      <%= f.fields_for :fields do |ff| %>
 
-  <div class="actions">
-    <%= f.submit button_name, class: "ui button blue" %>
-  </div>
+        <% if custom_field.is_text? %>
+
+          <div class="field">
+            <%= ff.label :content, custom_field.title %>
+            <%= ff.text_field :content %>
+          </div>
+
+        <% elsif custom_field.is_text_area? %>
+
+          <div class="field">
+            <%= ff.label :area_content, custom_field.title %>
+            <%= ff.text_area :area_content %>
+          </div>
+
+        <% elsif custom_field.is_combobox? %>
+          
+          <div class="field">
+            <%= ff.label :combobox, custom_field.title %>
+            <%= ff.text_area :combobox %>
+          </div>
+
+        <% end -%>
+    
+      <% end -%>
+
+    <% end -%>
+  <% else -%>
+    <p>Sem custom fields</p>
+  <% end -%>
+
+  <%= f.submit button_name, class: "ui button blue" %>
 <% end %> 

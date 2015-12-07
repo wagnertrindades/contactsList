@@ -18,10 +18,4 @@
     </div>
   </div>
 
-  <% if @custom_fields %>
-    <% @custom_fields.each do |custom_field| %>
-      <%= render partial: 'field/form', locals: { type_field: custom_field.status, label: custom_field.title } %>
-    <% end -%>
-  <% end -%>
-
 </div>
