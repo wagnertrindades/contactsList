@@ -17,13 +17,21 @@
 
 // User views
 body > .grid {
-  height: 100%;
+  height: 90%;
 }
 .image {
   margin-top: -100px;
 }
 .column {
   max-width: 450px;
+}
+
+// Flash messages
+.flash-messages {
+  position: absolute !important;
+  max-width: 400px;
+  bottom: 1em;
+  right: 1em;
 }
 
 // Icons
@@ -55,6 +63,9 @@ body {
   .container.form{
     max-width: 600px !important;
   }
+}
+#error_explanation {
+  display: block;
 }
 
 // Cards Custom

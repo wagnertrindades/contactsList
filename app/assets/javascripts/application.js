@@ -15,3 +15,8 @@
 //= require turbolinks
 //= require_tree .
 //= require semantic-ui
+
+
+setTimeout(function(){
+  $('body .flash-messages').closest('.message').transition('fade');
+}, 3000);
