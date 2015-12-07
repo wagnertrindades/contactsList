@@ -44,7 +44,7 @@ class ContactListsController < ApplicationController
   # PATCH/PUT /contact_lists/1.json
   def update
     respond_to do |format|
-      if @contact_list.update_attributes(contact_list_params)
+      if @contact_list.update(contact_list_params)
         format.html { redirect_to @contact_list, notice: 'Contato atualizado com sucesso.' }
         format.json { render :show, status: :ok, location: @contact_list }
       else
@@ -76,6 +76,6 @@ class ContactListsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def contact_list_params
-      params.require(:contact_list).permit(:name, :email, :user_id, :fields_attributes => [:content, :area_content, :combobox, :custom_field_id])
+      params.require(:contact_list).permit(:name, :email, :user_id, :fields_attributes => [:id, :content, :area_content, :combobox, :custom_field_id])
     end
 end
