@@ -9,7 +9,7 @@
     <% end -%>
   </h1>
   
-  <% if @contact_lists.count > 0 %>
+  <% if @contact_lists.any? %>
     <%= render 'table_contacts' %>
   <% else %>
     <div class="ui visible message">

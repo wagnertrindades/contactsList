@@ -12,34 +12,36 @@
     <h4>Campos personalizados:</h4>
     
     <div class="ui cards">
-      <% @custom_fields.each do |custom_field| %>
-        <div class="card">
-          <div class="content">
-            <i class="large server middle aligned icon right floated ui"></i>
-            <div class="header custom-field-title">
-              <%= custom_field.title %>
+      <% if @custom_fields.any? %>
+        <% @custom_fields.each do |custom_field| %>
+          <div class="card">
+            <div class="content">
+              <i class="large server middle aligned icon right floated ui"></i>
+              <div class="header custom-field-title">
+                <%= custom_field.title %>
+              </div>
+              <div class="meta custom-field-status">
+                <% if custom_field.is_text? %>
+                  Texto curto
+                <% elsif custom_field.is_text_area? %>
+                  Texto Longo
+                <% elsif custom_field.is_combobox? %>
+                  Caixa de seleção
+                <% end -%>
+              </div>
             </div>
-            <div class="meta custom-field-status">
-              <% if custom_field.is_text? %>
-                Texto curto
-              <% elsif custom_field.is_text_area? %>
-                Texto Longo
-              <% elsif custom_field.is_combobox? %>
-                Caixa de seleção
-              <% end -%>
+            <div class="extra content">
+              <div class="ui two buttons">
+                <%= link_to edit_custom_field_path(custom_field), title: "Editar Campo Personalizado", class: "ui basic teal button" do %>
+                  <i class="refresh icon teal"></i>
+                <% end -%>
+                <%= link_to custom_field_path(custom_field), method: :delete, title: "Apagar Campo Personalizado", class: "ui basic red button" do %>
+                  <i class="remove icon red"></i>
+                <% end -%>
+              </div>
             </div>
           </div>
-          <div class="extra content">
-            <div class="ui two buttons">
-              <%= link_to edit_custom_field_path(custom_field), title: "Editar Campo Personalizado", class: "ui basic teal button" do %>
-                <i class="refresh icon teal"></i>
-              <% end -%>
-              <%= link_to custom_field_path(custom_field), method: :delete, title: "Apagar Campo Personalizado", class: "ui basic red button" do %>
-                <i class="remove icon red"></i>
-              <% end -%>
-            </div>
-          </div>
-        </div>
+        <% end -%>
       <% end -%>
 
       <div class="card add-custom">
