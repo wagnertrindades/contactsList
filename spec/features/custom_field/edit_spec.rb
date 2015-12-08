@@ -10,16 +10,16 @@ describe "custom_field#edit" do
 
       click_link "Configurar campos personalizados"
       
-      within ".custom-field" do
+      within ".custom-card" do
         click_link "Editar"
       end
 
-      fill_in "Title", with: "CPF"
+      fill_in "custom_field_title", with: "CPF"
       click_button "Atualizar"
 
       expect(page).to have_content("Campo personalizado atualizado com sucesso.")
       
-      within ".custom-field .custom-field-title" do
+      within ".custom-card .custom-field-title" do
         expect(page).to have_content("CPF")
       end
     end

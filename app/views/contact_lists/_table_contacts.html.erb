@@ -33,10 +33,12 @@
         <% end -%>
         <!-- get fields -->
         <!-- if no field add in custom field -->
-        <% if  contact_list.fields.count != @custom_fields.count %>
-          <% diference = @custom_fields.count - contact_list.fields.count %>
-          <% for i in 1..diference %>
-            <td></td>
+        <% if contact_list.fields && @custom_fields %>
+          <% if  contact_list.fields.count != @custom_fields.count %>
+            <% diference = @custom_fields.count - contact_list.fields.count %>
+            <% for i in 1..diference %>
+              <td></td>
+            <% end -%>
           <% end -%>
         <% end -%>
         <!-- if no field add in custom field -->

@@ -6,8 +6,8 @@ module DeviseHelpers
         User.create(name: options[:name], email: options[:email], password: options[:password])
 
         visit "/"
-        fill_in "Email", with: options[:email]
-        fill_in "Password", with: options[:password]
+        fill_in "user_email", with: options[:email]
+        fill_in "user_password", with: options[:password]
         click_button "Entrar"
     end
 end

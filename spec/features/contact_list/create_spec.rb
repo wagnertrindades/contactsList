@@ -5,9 +5,9 @@ describe "contact_lists#create" do
 
   context "Create contact" do
     it "success" do
-      click_link "Novo contato"
-      fill_in "Name", with: "Test"
-      fill_in "Email", with: "test@test.com"
+      find(:xpath, "//a[@href='/contact_lists/new']").click
+      fill_in "contact_list_name", with: "Test"
+      fill_in "contact_list_email", with: "test@test.com"
       click_button "Criar contato"
       expect(page).to have_content("Contato adicionado com sucesso.")
       within ".contact-name" do

@@ -10,7 +10,7 @@ describe "custom_field#destroy" do
 
       click_link "Configurar campos personalizados"
       
-      within ".custom-field" do
+      within ".custom-card" do
         click_link "Apagar"
       end
 

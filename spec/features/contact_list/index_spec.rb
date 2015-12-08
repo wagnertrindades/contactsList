@@ -28,7 +28,7 @@ describe "contact_lists#index" do
 
       visit "/contact_lists"
 
-      within ".head" do
+      within "thead" do
         expect(page).to have_content(custom_field.title)
       end
     end

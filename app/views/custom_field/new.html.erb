@@ -11,8 +11,8 @@
   
   <%= form_for @custom_field, url: custom_field_index_path, html: { method: :post, class: "ui form" } do |f| %>
     <% if @custom_field.errors.any? %>
-      <div id="error_explanation">
-        <ul class="forms-errors">
+      <div id="error_explanation" class="ui error message">
+        <ul class="forms-errors list">
         <% @custom_field.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
@@ -31,11 +31,11 @@
     </div>
     
     <div id="items-field" class="field">
-      <div class="ui message">
+      <div class="ui message teal">
         <div class="header">
           Prenchendo as opções da caixa de seleção
         </div>
-        <p lingdex="1">Coloque as opções separadas por virgula e espaço. Exemplo: Brasil, Estados Unidos, México </p>
+        <p lingdex="1">Coloque as opções separadas por virgula e espaço. <strong>Exemplo:</strong> Brasil, Estados Unidos, México </p>
       </div>
       <%= f.label :items, "Items para adicionar a caixa de seleção" %>
       <%= f.text_field :items %>

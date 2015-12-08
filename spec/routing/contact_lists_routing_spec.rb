@@ -11,10 +11,6 @@ RSpec.describe ContactListsController, type: :routing do
       expect(:get => "/contact_lists/new").to route_to("contact_lists#new")
     end
 
-    it "routes to #show" do
-      expect(:get => "/contact_lists/1").to route_to("contact_lists#show", :id => "1")
-    end
-
     it "routes to #edit" do
       expect(:get => "/contact_lists/1/edit").to route_to("contact_lists#edit", :id => "1")
     end

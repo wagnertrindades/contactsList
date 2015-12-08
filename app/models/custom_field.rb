@@ -1,6 +1,6 @@
 class CustomField < ActiveRecord::Base
   belongs_to :user
-  has_one :field, :dependent => :delete
+  has_many :fields, :dependent => :delete_all
 
   validates :title, presence: true
   validates :status, presence: true

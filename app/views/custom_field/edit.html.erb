@@ -12,8 +12,8 @@
 
   <%= form_for @custom_field, url: custom_field_path, html: { method: :put, class: "ui form" } do |f| %>
     <% if @custom_field.errors.any? %>
-      <div id="error_explanation">
-        <ul class="forms-errors">
+      <div id="error_explanation" class="ui error message">
+        <ul class="forms-errors list">
         <% @custom_field.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>

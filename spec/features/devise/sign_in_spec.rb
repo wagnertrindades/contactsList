@@ -6,16 +6,16 @@ describe 'sessions#new' do
         it 'success' do
             sign_in
 
-            expect(page).to have_content("Lists")
+            expect(page).to have_content("Lista de contatos")
         end
 
         it 'error' do
             visit "/"
-            fill_in "Email", with: "errado@errado.com"
-            fill_in "Password", with: "errado"
+            fill_in "user_email", with: "errado@errado.com"
+            fill_in "user_password", with: "errado"
             click_button "Entrar"
 
-            expect(page).to_not have_content("Lists")
+            expect(page).to_not have_content("Lista de contatos")
         end
     end
 end
