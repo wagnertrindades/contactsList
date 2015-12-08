@@ -21,39 +21,38 @@
     <%= f.text_field :email %>
   </div>
   
-
-  <%= f.fields_for :fields do |field| %>
-
-    <% if @contact_list.custom_fields.is_text? %>
-
-      <div class="field">
-        <%= field.label :content, @contact_list.field.custom_field.title %>
-        <%= field.text_field :content %>
-      </div>
+  <% if @custom_fields.any? %>
+    <% @custom_fields.each_with_index do |custom_field, i| %>
       
-    <% elsif @contact_list.custom_field.is_text_area? %>
-
-      <div class="field">
-        <%= field.label :area_content, @contact_list.custom_field.title %>
-        <%= field.text_area :area_content %>
-      </div>
-
-    <% elsif @contact_list.custom_field.is_combobox? %>
-
-      <div class="field">
-        <%= field.label :combobox, @contact_list.custom_field.title %>
-        <%= field.select :combobox do %>
-          <% @contact_list.custom_field.items_split.each do |item| %>
-            <option value="<%= item %>"><%= item %></option>
-          <% end -%>
+      <%= f.fields_for :fields do |ff| %>
+        
+        <% if custom_field.is_text? %>
+          <div class="field">
+            <%= ff.label :content, custom_field.title %>
+            <%= ff.text_field :content %>
+          </div>
+          <%= ff.hidden_field :custom_field_id, :value => custom_field.id %>
+        <% elsif custom_field.is_text_area? %>
+          <div class="field">
+            <%= ff.label :area_content, custom_field.title %>
+            <%= ff.text_area :area_content %>
+          </div>
+          <%= ff.hidden_field :custom_field_id, :value => custom_field.id %>
+        <% elsif custom_field.is_combobox? %>
+          <div class="field">
+            <%= ff.label :combobox, custom_field.title %>
+            <%= ff.select :combobox do %>
+              <% custom_field.items_split.each do |item| %>
+                <option value="<%= item %>"><%= item %></option>
+              <% end -%>
+            <% end -%>
+          </div>
+          <%= ff.hidden_field :custom_field_id, :value => custom_field.id %>
         <% end -%>
-      </div>
-
+      <% end -%>  
     <% end -%>
-
   <% end -%>
-
-
+  
 
 
   <%= f.submit button_name, class: "ui button blue" %>
